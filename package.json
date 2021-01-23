@@ -1,0 +1,21 @@
+{
+  "name": "(R) Package, Exchange Sync",
+  "version": "0.0.1",
+  "description": "module to run exchange sync",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "chalk": "^4.1.0",
+    "express": "^4.15.4",
+    "ext-ip": "0.3.8",
+    "ip": "^1.1.5",
+    "os-utils": "0.0.14",
+    "socket.io": "^2.3.0",
+    "uuid": "^8.2.0",
+    "ws": "^7.3.1"
+  },
+  "scripts": {
+    "rtnesync": "node apps/rtnesync.js"
+  },
+  "author": "josewilker@reactioon.com"
+}
