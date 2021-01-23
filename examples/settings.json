@@ -1,5 +1,5 @@
 {
-    "path_base" : "/usk/smr/DEMON",
-    "socket_host" : "10.211.55.3",
+    "path_base" : "/root",
+    "socket_host" : "www.reactioon.com",
     "socket_port" : "8080"
 }

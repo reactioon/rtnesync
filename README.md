@@ -118,18 +118,26 @@ php -i | grep memcache
 
 ### Install (R) Package
 
+#### Setup environment
+
+```
+cd /root
+```
+
 #### DEMON
 
 1) Download
 
 ```
-git clone {demon-repository} demon
+cd /root
+git clone https://github.com/reactioon/demon.git demon
 ```
 
 2) Setup and Install
 
 ```
-create settings.json file in 'apps' folder.
+cp examples/settings.json /root/demon/
+create settings.json file in base folder.
 ```
 
 Note: settings file example is located in example folder.
@@ -139,22 +147,26 @@ Note: settings file example is located in example folder.
 1) Download
 
 ```
-git clone {demon-package-resync} resync
+cd /root/demon/scripts
+git clone https://github.com/reactioon/script-resync.git resync
 ```
 
-#### RESYNC
+#### RTNESYNC
 
 1) Download
 
 ```
-git clone {sync-repository} rtnesync
+cd /root
+git clone https://github.com/reactioon/rtnesync.git rtnesync
 ```
 
 2) Install
 
 ```
-cd rtnesync
+cd /root/rtnesync
 npm install
+cd /root/rtnesync/apps
+cp ../examples/settings.json /root/rtnesync/apps/
 ```
 
 ---
