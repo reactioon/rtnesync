@@ -31,6 +31,7 @@ echo "";
 # script - resync
 cd $PATH_DEMON_SCRIPTS;
 git clone https://github.com/reactioon/script-resync.git $NAME_RESYNC;
+chown -R $ENV_USER:$ENV_USER $PATH_DEMON;
 echo "Installed resync!";
 echo "name: $NAME_RESYNC";
 echo "src: $PATH_DEMON_SCRIPTS/$NAME_RESYNC";
@@ -42,6 +43,7 @@ cd $PATH_RTNESYNC;
 npm install;
 settings_file="{\"path_demon\":\"$PATH_DEMON\",\"socket_host\":\"$SOCKET_HOST\",\"socket_port\":\"8080\"}";
 echo $settings_file > $PATH_RTNESYNC/apps/_settings.json;
+chown $ENV_USER:$ENV_USER $PATH_RTNESYNC;
 echo "Installed rtnesync!";
 echo "name: $NAME_RTNESYNC";
 echo "src: $PATH_RTNESYNC";
@@ -51,5 +53,5 @@ echo "";
 # setup cron
 cron_update="PATH=/sbin:/usr/sbin:/bin:/usr/bin
 # Start job every 5 minutes
-*/5 * * * * root $PATH_RTNESYNC/update.rtn";
-echo "$cron_update" > /etc/cron.d/update-rtnesync.job;
+*/5 * * * * $ENV_USER cd $PATH_RTNESYNC && bash update.rtn";
+echo "$cron_update" > /etc/cron.d/rtnesyncupdate;

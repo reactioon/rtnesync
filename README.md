@@ -116,7 +116,32 @@ php -i | grep memcache
 > memcache support => enabled
 ```
 
-### Install (R) Package
+### Install (R) Package / Automatically
+
+1. Create a folder
+
+```
+cd /
+mkdir reactioon
+```
+
+1. Download RTNESYNC
+```
+git clone https://github.com/reactioon/rtnesync.git rtnesync
+```
+
+2. Execute installer
+
+```
+bash install.rtn
+```
+
+Notes:
+
+(1): The packages will be installed on default folder (/reactioon), located on settings.cfg, you can change it.
+(2): A cronjob script will be installed on '/etc/cron.d'
+
+### Install (R) Package / Manually
 
 #### Setup environment
 

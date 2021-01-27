@@ -8,11 +8,21 @@ echo "[ RTN / Exchange Sync (autoload) ]";
 PATH_DEMON="$PATH_FOLDER/$NAME_DEMON";
 PATH_RTNESYNC="$PATH_FOLDER/$NAME_RTNESYNC";
 
+PATH_LOG="/root/.forever/rtnesync.log";
+
 if [ -d "$PATH_RTNESYNC" ]; then
 
     echo "Starting 'rtnesync' ...";
     cd $PATH_RTNESYNC;
-    forever start apps/rtnesync.js;
+
+    forever start -a -l rtnesync.log apps/rtnesync.js;
+
+    # if forever is installed on globally (root), the log will show automatically.
+    if [ -f "$PATH_LOG" ]; then
+    	tail -f $PATH_LOG;
+    else
+    	echo "can't found forever folder on root... path: /root/.forever";
+    fi;
 
 else
 
