@@ -287,6 +287,29 @@ sys.modules.websocket = {
                                     sys.logs.register("STAAAAARSSS!!!");
 
                                 break;
+                                case "sys-update-core":
+
+                                    if (objEnvelope.auth) {
+
+                                        // write a trigger file
+                                        if (!fs.existsSync(sys._updateFile)) {
+
+                                            arrayUpdate = {};
+                                            arrayUpdate.update = 1;
+
+                                            fs.writeFileSync(sys._updateFile, sys.returnJSON(arrayUpdate), 'utf8');
+
+                                        }
+
+                                        objEnvelope.way = "out";
+                                        objEnvelope.status = "sucess";
+                                        objEnvelope.msg = "update requested.";
+
+                                        sys.returnEnvelope(ws, sys.returnJSON(objEnvelope));
+
+                                    }
+
+                                break;
                                 case "stats":
 
                                     documentStats = sys.actions._stats(objEnvelope);

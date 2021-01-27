@@ -1,0 +1,23 @@
+#!/bin/sh
+
+source ~/.bashrc;
+source settings.cfg;
+
+echo "[ RTN / Exchange Sync (autoload) ]";
+
+PATH_DEMON="$PATH_FOLDER/$NAME_DEMON";
+PATH_RTNESYNC="$PATH_FOLDER/$NAME_RTNESYNC";
+
+if [ -d "$PATH_RTNESYNC" ]; then
+
+    echo "Starting 'rtnesync' ...";
+    cd $PATH_RTNESYNC;
+    forever start apps/rtnesync.js;
+
+else
+
+    echo "Don't found sync interface.";
+
+fi;
+
+echo "[ End ]";

@@ -1,0 +1,68 @@
+#!/bin/sh
+
+source ~/.bashrc;
+source settings.cfg;
+
+echo "[ RTN / Exchange Sync (Update) ]";
+
+PATH_DEMON="$PATH_FOLDER/$NAME_DEMON";
+PATH_SYNC="$PATH_FOLDER/$NAME_RTNESYNC";
+
+if [ -f "$PATH_SYNC/.trigger.update" ]; then
+
+	echo "";
+
+    echo "Killing processes...";
+    killall node;
+    killall php;
+    forever stopall;
+
+    echo "";
+
+    echo "Updating demon...";
+    echo "src: $PATH_DEMON";
+    cd $PATH_DEMON;
+
+    if [ -d "$PATH_DEMON/.git" ]; then
+    	git config pull.rebase false;
+    	git pull origin master;
+	fi;
+
+	echo "";
+
+    echo "Updating resync...";
+    echo "src: $PATH_DEMON/scripts/$NAME_RESYNC";
+    cd $PATH_DEMON/scripts/$NAME_RESYNC;
+
+    if [ -d "$PATH_DEMON/scripts/$NAME_RESYNC/.git" ]; then
+    	git config pull.rebase false;
+    	git pull origin master;
+	fi;
+
+	echo "";
+
+    echo "Updating rtnesync";
+    echo "src: $PATH_SYNC";
+    cd $PATH_SYNC;
+
+    if [ -d "$PATH_SYNC/.git" ]; then
+    	git config pull.rebase false;
+    	git pull origin master;
+	fi;
+
+	echo "";
+
+    echo "Removing old files...";
+    cd $PATH_SYNC;
+
+    if [ -f ".trigger.update" ]; then
+    	rm .trigger.update;
+	fi;
+
+else
+
+    echo "Don't found an trigger to update the sys.";
+
+fi;
+
+echo "[ End ]";

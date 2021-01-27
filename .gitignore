@@ -10,6 +10,7 @@ apps/_license.json
 forever.json
 package-lock.json
 npm-debug.log
+.trigger.update
 
 # Compiled Java class files
 *.class

@@ -7,6 +7,7 @@
 
 const _settings = require('./_settings.json');
 var initFile = "./apps/_license.json";
+var updateFile = ".trigger.update";
 let _config = {};
 
 const fs = require('fs');
@@ -35,6 +36,7 @@ sys.pkg.chalk = chalk;
 // global vars
 sys._settings = _settings;
 sys._initFile = initFile;
+sys._updateFile = updateFile;
 sys._config = _config;
 
 // global preferences

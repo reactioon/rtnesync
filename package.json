@@ -1,5 +1,5 @@
 {
-  "name": "(R) Package, Exchange Sync",
+  "name": "rtnesync",
   "version": "0.0.1",
   "description": "module to run exchange sync",
   "main": "index.js",

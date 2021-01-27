@@ -1,0 +1,55 @@
+#!/bin/bash
+
+source ~/.bashrc;
+source settings.cfg;
+
+echo "(R) Package - Reactioon Exchange Sync (install)";
+echo "";
+echo "Starting installer...";
+
+PATH_DEMON="$PATH_FOLDER/$NAME_DEMON";
+PATH_DEMON_SCRIPTS="$PATH_DEMON/scripts";
+PATH_RTNESYNC="$PATH_FOLDER/$NAME_RTNESYNC";
+
+if [ ! -d $PATH_FOLDER ]; then
+	mkdir $PATH_FOLDER;
+fi;
+
+cd $PATH_FOLDER;
+
+# demon
+git clone https://github.com/reactioon/demon.git $NAME_DEMON;
+cd $PATH_DEMON;
+settings_file_demon="{\"name\":\"DEMON\",\"version\":\"0.1\",\"base_path\":\"$PATH_DEMON\"}";
+echo $settings_file_demon > $PATH_DEMON/settings.json;
+echo "Installed demon!";
+echo "name: $NAME_DEMON";
+echo "src: $PATH_DEMON";
+
+echo "";
+
+# script - resync
+cd $PATH_DEMON_SCRIPTS;
+git clone https://github.com/reactioon/script-resync.git $NAME_RESYNC;
+echo "Installed resync!";
+echo "name: $NAME_RESYNC";
+echo "src: $PATH_DEMON_SCRIPTS/$NAME_RESYNC";
+
+echo "";
+
+# rtnesync
+cd $PATH_RTNESYNC;
+npm install;
+settings_file="{\"path_demon\":\"$PATH_DEMON\",\"socket_host\":\"$SOCKET_HOST\",\"socket_port\":\"8080\"}";
+echo $settings_file > $PATH_RTNESYNC/apps/_settings.json;
+echo "Installed rtnesync!";
+echo "name: $NAME_RTNESYNC";
+echo "src: $PATH_RTNESYNC";
+
+echo "";
+
+# setup cron
+cron_update="PATH=/sbin:/usr/sbin:/bin:/usr/bin
+# Start job every 5 minutes
+*/5 * * * * root $PATH_RTNESYNC/update.rtn";
+echo "$cron_update" > /etc/cron.d/update-rtnesync.job;
