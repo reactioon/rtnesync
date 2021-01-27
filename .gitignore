@@ -11,6 +11,7 @@ forever.json
 package-lock.json
 npm-debug.log
 .trigger.update
+settings.cfg
 
 # Compiled Java class files
 *.class
