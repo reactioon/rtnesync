@@ -57,14 +57,14 @@ cron_update="PATH=/sbin:/usr/sbin:/bin:/usr/bin
 */5 * * * * $ENV_USER cd $PATH_RTNESYNC && bash update.rtn
 
 # Run job 'logrotate' every 12 hours
-* */12 * * * $ENV_USER logrotate -v rtnesync-foreverlog
-
+* */12 * * * $ENV_USER logrotate -v $PATH_RTNESYNC/logs/.logrotate
 ";
+
 echo "$cron_update" > /etc/cron.d/rtnesyncupdate;
 
 # setup - LOGROTATE
 log_rotate="$PATH_RTNESYNC/logs/$NAME_RTNESYNC.log {
-	size 10M
+	size 3M
     missingok
     rotate 10
     notifempty
@@ -74,4 +74,4 @@ log_rotate="$PATH_RTNESYNC/logs/$NAME_RTNESYNC.log {
     noolddir
 }";
 
-echo "$log_rotate" > /etc/logrotate.d/rtnesync-foreverlog
+echo "$log_rotate" > $PATH_RTNESYNC/logs/.logrotate
