@@ -50,8 +50,28 @@ echo "src: $PATH_RTNESYNC";
 
 echo "";
 
-# setup cron
+# setup - CRON
 cron_update="PATH=/sbin:/usr/sbin:/bin:/usr/bin
-# Start job every 5 minutes
-*/5 * * * * $ENV_USER cd $PATH_RTNESYNC && bash update.rtn";
+
+# Run job 'update.rtn' every 5 minutes
+*/5 * * * * $ENV_USER cd $PATH_RTNESYNC && bash update.rtn
+
+# Run job 'logrotate' every 12 hours
+* */12 * * * $ENV_USER logrotate -v rtnesync-foreverlog
+
+";
 echo "$cron_update" > /etc/cron.d/rtnesyncupdate;
+
+# setup - LOGROTATE
+log_rotate="$PATH_RTNESYNC/logs/$NAME_RTNESYNC.log {
+	size 10M
+    missingok
+    rotate 10
+    notifempty
+    copytruncate
+    dateext
+    nomail
+    noolddir
+}";
+
+echo "$log_rotate" > /etc/logrotate.d/rtnesync-foreverlog
