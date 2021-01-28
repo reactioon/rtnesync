@@ -1,0 +1,23 @@
+#!/bin/sh
+
+source ~/.bashrc;
+source settings.cfg;
+
+echo "[ RTN / Exchange Sync (stop) ]";
+
+PATH_RTNESYNC="$PATH_FOLDER/$NAME_RTNESYNC";
+
+if [ -d "$PATH_RTNESYNC" ]; then
+
+    echo "Stopping 'rtnesync' ...";
+    cd $PATH_RTNESYNC;
+
+    forever stopall;
+
+else
+
+    echo "Don't found the folder '$PATH_RTNESYNC'.";
+
+fi;
+
+echo "[ End ]";

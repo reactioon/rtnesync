@@ -123,23 +123,52 @@ php -i | grep memcache
 ```
 cd /
 mkdir reactioon
+cd /reactioon
 ```
 
-1. Download RTNESYNC
+2. Download RTNESYNC
 ```
+cd /reactioon
 git clone https://github.com/reactioon/rtnesync.git rtnesync
 ```
 
-2. Execute installer
+3. Install
 
 ```
+cd /reactioon
 bash install.rtn
+```
+
+--
+
+* Start
+
+```
+cd /reactioon
+bash start.rtn
+```
+
+* Stop
+
+```
+cd /reactioon
+bash stop.rtn
+```
+
+* Update
+
+```
+cd /reactioon
+bash update.rtn
 ```
 
 Notes:
 
 (1): The packages will be installed on default folder (/reactioon), located on settings.cfg, you can change it.
+
 (2): A cronjob script will be installed on '/etc/cron.d'
+
+(3): A logrotate will be activated on logs folder
 
 ### Install (R) Package / Manually
 
@@ -160,9 +189,10 @@ git clone https://github.com/reactioon/demon.git demon
 
 2) Setup and Install
 
+create settings.json file in base folder.
+
 ```
 cp examples/settings.json /root/demon/
-create settings.json file in base folder.
 ```
 
 Note: settings file example is located in example folder.

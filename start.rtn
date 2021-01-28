@@ -3,12 +3,10 @@
 source ~/.bashrc;
 source settings.cfg;
 
-echo "[ RTN / Exchange Sync (autoload) ]";
+echo "[ RTN / Exchange Sync (start) ]";
 
 PATH_DEMON="$PATH_FOLDER/$NAME_DEMON";
 PATH_RTNESYNC="$PATH_FOLDER/$NAME_RTNESYNC";
-
-PATH_LOG="/root/.forever/rtnesync.log";
 
 if [ -d "$PATH_RTNESYNC" ]; then
 
@@ -18,8 +16,8 @@ if [ -d "$PATH_RTNESYNC" ]; then
     forever start -a -l $PATH_RTNESYNC/logs/rtnesync.log apps/rtnesync.js;
 
     # if forever is installed on globally (root), the log will show automatically.
-    if [ -f "$PATH_LOG" ]; then
-    	tail -f $PATH_LOG;
+    if [ -f "$PATH_RTNESYNC/logs/rtnesync.log" ]; then
+    	tail -f $PATH_RTNESYNC/logs/rtnesync.log;
     else
     	echo "can't found forever folder on root... path: /root/.forever";
     fi;
