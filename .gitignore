@@ -13,6 +13,7 @@ npm-debug.log
 .trigger.update
 settings.cfg
 logs/
+._*
 
 # Compiled Java class files
 *.class
