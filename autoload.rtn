@@ -15,7 +15,7 @@ if [ -d "$PATH_RTNESYNC" ]; then
     echo "Starting 'rtnesync' ...";
     cd $PATH_RTNESYNC;
 
-    forever start -a -l /usk/smr/rtnesync/rtnesync.log apps/rtnesync.js;
+    forever start -a -l $PATH_RTNESYNC/logs/rtnesync.log apps/rtnesync.js;
 
     # if forever is installed on globally (root), the log will show automatically.
     if [ -f "$PATH_LOG" ]; then

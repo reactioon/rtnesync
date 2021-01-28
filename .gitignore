@@ -12,6 +12,7 @@ package-lock.json
 npm-debug.log
 .trigger.update
 settings.cfg
+logs/
 
 # Compiled Java class files
 *.class
