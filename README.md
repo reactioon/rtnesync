@@ -135,7 +135,7 @@ git clone https://github.com/reactioon/rtnesync.git rtnesync
 3. Install
 
 ```
-cd /reactioon
+cd /reactioon/rtnesync
 bash install.rtn
 ```
 
@@ -144,21 +144,21 @@ bash install.rtn
 * Start
 
 ```
-cd /reactioon
+cd /reactioon/rtnesync
 bash start.rtn
 ```
 
 * Stop
 
 ```
-cd /reactioon
+cd /reactioon/rtnesync
 bash stop.rtn
 ```
 
 * Update
 
 ```
-cd /reactioon
+cd /reactioon/rtnesync
 bash update.rtn
 ```
 
