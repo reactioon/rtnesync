@@ -10,15 +10,13 @@ sys.modules.websocket = {
 
     },
     waitConnection: function() {
-        if (intervalConnection != undefined) {
-            var intervalConnection = setInterval(function(){
-                if (!isConnected) {
-                    sys.logs.register("Trying connect on host...");
-                    sys.modules.websocket.load();
-                    clearInterval(intervalConnection);
-                }
-            }, 10000);
-        }
+        var intervalConnection = setInterval(function(){
+            if (!isConnected) {
+                sys.logs.register("Trying connect on host...");
+                sys.modules.websocket.load();
+                clearInterval(intervalConnection);
+            }
+        }, 10000);
     },
     sendStats: function(ws) {
 
