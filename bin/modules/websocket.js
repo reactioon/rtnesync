@@ -18,7 +18,7 @@ sys.modules.websocket = {
                 sys.logs.register("Trying connect on host...");
                 sys.modules.websocket.load();
                 clearInterval(intervalConnection);
-                killCommand = "killall php";
+                killCommand = "killall php || service memcached restart";
                 sys.pkg.childProcess.exec(killCommand);
             }
         }, 10000);

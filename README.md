@@ -102,9 +102,22 @@ sudo dnf module enable php:remi-7.4 -y
 sudo dnf install php-pecl-memcached php-pecl-memcache -y
 ```
 
+### Memcached
+
+Enable memcache to autostart and start the service.
+
+```
+chkconfig memcached on
+service memcached start
+```
+
 ### PHP
 
 #### Change settings
+
+```
+nano /etc/php.ini
+```
 
 1. date_timezone = America/Fortaleza
 
