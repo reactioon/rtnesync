@@ -19,9 +19,17 @@ if [ -f "$PATH_SYNC/.trigger.update" ]; then
 
     echo "";
 
+    echo "Updating basic config...";
+
+    chkconfig memcached on;
+
     echo "Updating demon...";
     echo "src: $PATH_DEMON";
     cd $PATH_DEMON;
+
+    if [ ! -d "$PATH_DEMON/data/$NAME_RESYNC" ]; then
+        mkdir $PATH_DEMON/data/$NAME_RESYNC;
+    fi;
 
     if [ -d "$PATH_DEMON/.git" ]; then
     	git config pull.rebase false;
