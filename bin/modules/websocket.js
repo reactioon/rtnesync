@@ -1,6 +1,9 @@
 var isConnected = false;
 
 sys.modules.websocket = {
+    heartbeat: function() {
+        console.log("💓");
+    },
     connect: function() {
 
         const WebSocket = sys.pkg.websocket;
@@ -37,6 +40,10 @@ sys.modules.websocket = {
 
                     dateNow = new Date();
                     sys.logs.success("[OUT-STATS] [...] Sending stats... " + dateNow);
+
+                } else {
+
+                    clearInterval(intervalStats);
 
                 }
 
@@ -230,6 +237,8 @@ sys.modules.websocket = {
         ws = this.connect();
 
         ws.on('error', function error(){});
+
+        ws.on('ping', sys.modules.websocket.heartbeat);
 
         ws.on('open', function open() {
 
