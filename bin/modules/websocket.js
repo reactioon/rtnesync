@@ -1,4 +1,6 @@
 var isConnected = false;
+var intervalStats = false;
+var intervalConnection = false;
 
 sys.modules.websocket = {
     heartbeat: function() {
@@ -14,20 +16,23 @@ sys.modules.websocket = {
     },
     waitConnection: function() {
         var intervalConnection = setInterval(function(){
+
+            clearInterval(intervalConnection);
+
             if (!isConnected) {
+
                 sys.logs.register("Trying connect on host...");
                 sys.modules.websocket.load();
-                clearInterval(intervalConnection);
-                killCommand = "killall php || service memcached restart";
-                sys.pkg.childProcess.exec(killCommand);
+
             }
+
         }, 10000);
     },
     sendStats: function(ws) {
 
         minutesWait = sys._minutesToSendStats*60000;
 
-        if (intervalStats == undefined) {
+        // if (intervalStats == undefined) {
 
             var intervalStats = setInterval(function(){
 
@@ -51,7 +56,7 @@ sys.modules.websocket = {
 
             }, minutesWait);
 
-        }
+        // }
 
         sys.logs.register("Enabled stats to send with '" + minutesWait + "' miliseconds.");
 
@@ -263,6 +268,14 @@ sys.modules.websocket = {
         ws.on('close', function close() {
 
             ws.terminate();
+
+            killCommand = "killall php || service memcached restart";
+            sys.pkg.childProcess.exec(killCommand);
+
+            if (intervalStats != undefined) {
+                clearInterval(intervalStats);
+            }
+
             sys._config.auth = false;
 
             isConnected = false;
